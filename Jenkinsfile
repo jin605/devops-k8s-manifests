@@ -17,6 +17,7 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -al'
                     echo "Received Docker Image Version : ${params.DOCKER_IMAGE_VERSION}"
+                    sh 'git checkout main'
                     sh "sed -i 's|jin604/department-service:.*|jin604/department-service:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
                     sh 'cat deploy.yaml'
 
