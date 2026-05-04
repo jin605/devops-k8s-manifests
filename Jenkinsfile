@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -al'
-                echo "${DOCKER_IMAGE_VERSION}"
+                echo "${params.DOCKER_IMAGE_VERSION}"
             }
         }
     }
