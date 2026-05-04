@@ -27,6 +27,7 @@ pipeline {
 
         stage('Commit & Push') {
             steps {
+                
                 sh 'git status'
                 sh 'git config --list'
                 sh 'git config user.name "jin605"'
@@ -35,7 +36,12 @@ pipeline {
                 sh 'git add .'
                 sh "git commit -m 'Update Image Version ${params.DOCKER_IMAGE_VERSION}'"
                 sh 'git status'
-                sh 'git push'
+
+                sshagent(['github-k8s-manifests']) {
+
+                    sh 'git push'
+
+                }
 
             }
         }
