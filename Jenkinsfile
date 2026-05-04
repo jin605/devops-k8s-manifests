@@ -24,5 +24,12 @@ pipeline {
 
             }
         }
+
+        stage('Commit & Push') {
+            steps {
+                sh 'git status'
+                sh 'git config --list'
+            }
+        }
     }
 }
