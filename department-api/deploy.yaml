@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: department-api-deploy
+  namespace: university
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: department-api
+  template:
+    metadata:
+      labels:
+        app: department-api
+    spec:
+      containers:
+      - name: department-api
+        image: jin604/department-service:4.0
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8088
+        startupProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8088
+          failureThreshold: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 8088
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8088
+          initialDelaySeconds: 5
+          periodSeconds: 5
