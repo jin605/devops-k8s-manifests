@@ -2,10 +2,11 @@ pipeline {
     agent any
 
 
-    parameters: [
+    parameters {
 
-        string(name: 'DOCKER_IMAGE_VERSION', defaultvalue: '', description: 'Docker Image Version')
-    ]
+        string(name: 'DOCKER_IMAGE_VERSION', defaultValue: '', description: 'Docker Image Version')
+
+    }
 
     
     stages {
