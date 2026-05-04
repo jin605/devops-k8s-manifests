@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: kuweb-service
 spec:
-  # type: ClusterIP
   type: NodePort
   selector:
     app: kuweb-label
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 30028
