@@ -29,6 +29,10 @@ pipeline {
             steps {
                 sh 'git status'
                 sh 'git config --list'
+                sh 'git config user.name "jin605"'
+                sh 'git config user.email "jinddd3@gmail.com"'
+                sh 'git config --list'
+
             }
         }
     }
