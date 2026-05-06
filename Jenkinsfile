@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('update Vue deploy.yaml') {
+        stage('update Vue rollout.yaml') {
             when {
                 expression {
                     return params.DID_BUILD_APP == "true"
@@ -29,13 +29,13 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -al'
                     echo "Received Docker Image Version : ${params.DOCKER_IMAGE_VERSION}"
-                    sh "sed -i 's|jin604/university-vue:.*|jin604/university-vue:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
-                    sh 'cat deploy.yaml'
+                    sh "sed -i 's|jin604/university-vue:.*|jin604/university-vue:${params.DOCKER_IMAGE_VERSION}|g' rollout.yaml"
+                    sh 'cat rollout.yaml'
                 }
             }
         }
 
-        stage('update API deploy.yaml') {
+        stage('update API rollout.yaml') {
             when {
                 expression {
                     return params.DID_BUILD_API == "true"
@@ -47,8 +47,8 @@ pipeline {
                     sh 'pwd'
                     sh 'ls -al'
                     echo "Received Docker Image Version : ${params.DOCKER_IMAGE_VERSION}"
-                    sh "sed -i 's|jin604/department-service:.*|jin604/department-service:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
-                    sh 'cat deploy.yaml'
+                    sh "sed -i 's|jin604/department-service:.*|jin604/department-service:${params.DOCKER_IMAGE_VERSION}|g' rollout.yaml"
+                    sh 'cat rollout.yaml'
                 }
             }
         }
