@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: university-vue
-        image: jin604/university-vue:74
+        image: jin604/university-vue:75
         resources:
           requests:
             memory: "128Mi"
